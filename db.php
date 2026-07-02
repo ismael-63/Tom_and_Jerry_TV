@@ -2,20 +2,21 @@
 
 require 'env.php';
 
-$dsn = "pgsql:host=$host;port=$port;dbname=$db";
-
 try {
-    $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
+    $mysqli = new mysqli($host, $user, $pass, $db, $port);
+
+    if ($mysqli->connect_error) {
+        throw new Exception("Error de conexión: " . $mysqli->connect_error);
+    }
 
     //echo "Conectado correctamente";
 
-    $stmt = $pdo->query("SELECT * from videos");
-    $videos = ($stmt->fetchAll());
+    $result = $mysqli->query("SELECT * from videos");
+    $videos = $result->fetch_all(MYSQLI_ASSOC);
 
-    for ($i=0; $i <sizeof($videos) ; $i++) { 
-    $final_json[] = ["name" => $videos[$i]['name'], "url" => $videos[$i]['url']];     
+    $final_json = [];
+    for ($i=0; $i < sizeof($videos); $i++) { 
+        $final_json[] = ["name" => $videos[$i]['name'], "url" => $videos[$i]['url']];     
     }
 
     header('Content-Type: application/json; charset=utf-8');
@@ -24,6 +25,8 @@ try {
     header('Pragma: no-cache');
     header('Expires: 0');
     echo (json_encode($final_json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+    $mysqli->close();
 
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
