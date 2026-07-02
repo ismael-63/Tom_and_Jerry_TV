@@ -18,7 +18,11 @@ try {
     $final_json[] = ["name" => $videos[$i]['name'], "url" => $videos[$i]['url']];     
     }
 
-    header('Content-Type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
+    header('Content-Disposition: inline');
+    header('Cache-Control: no-cache, no-store, must-revalidate');
+    header('Pragma: no-cache');
+    header('Expires: 0');
     echo (json_encode($final_json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
 } catch (Exception $e) {
