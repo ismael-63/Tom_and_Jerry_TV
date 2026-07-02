@@ -1,4 +1,4 @@
-const VIDEO_URL = "https://cartoontv.page.gd/db.php";
+const VIDEO_URL = "http://cartoontv.page.gd/db.php";
 
 let videosGlobal = [];
 let indiceActual = 0;
