@@ -1,4 +1,4 @@
-const VIDEO_URL = "http://cartoontv.page.gd/db.php";
+const VIDEO_URL = "https://cartoontv.page.gd/db.php";
 
 let videosGlobal = [];
 let indiceActual = 0;
@@ -14,15 +14,19 @@ let indiceActual = 0;
 })();
 
 
-
 async function getVideos() {
-    let response = await fetch(VIDEO_URL);
-    
-    if (!response.ok){
-        throw new Error("Http error !status not ok");
+    try {
+        let response = await fetch(VIDEO_URL);
+        
+        if (!response.ok){
+            throw new Error(`Http error! Status: ${response.status}`);
+        }
+        response = await response.json();
+        return response;
+    } catch (error) {
+        console.error("Error al obtener videos:", error);
+        throw error;
     }
-    response = await response.json();
-    return response;
 }
 
 async function crearLinks(){
