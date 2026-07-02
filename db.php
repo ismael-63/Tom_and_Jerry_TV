@@ -9,10 +9,17 @@ try {
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 
-    echo "Conectado correctamente";
+    //echo "Conectado correctamente";
 
-    $stmt = $pdo->query("SELECT NOW()");
-    print_r($stmt->fetch());
+    $stmt = $pdo->query("SELECT * from videos");
+    $videos = ($stmt->fetchAll());
+
+    for ($i=0; $i <sizeof($videos) ; $i++) { 
+    $final_json[] = ["name" => $videos[$i]['name'], "url" => $videos[$i]['url']];     
+    }
+
+    header('Content-Type: application/json');
+    echo (json_encode($final_json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
