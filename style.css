@@ -1,3 +1,90 @@
-*{
-    background-color: darkgray;
+body {
+    background: url("https://c4.wallpaperflare.com/wallpaper/232/276/866/tom-and-jerry-tom-and-jerry-wallpaper-thumb.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+    display: grid;
+    grid-template-areas: "rep-ale"
+        "ep_list";
+}
+
+/*---------- Estilos de la parte superios (VIDEO Y CONTROLES) ------------------*/
+.rep_ale {
+
+    grid-area: rep-ale;
+    height: 70vh;
+    background-color: rgba(0, 0, 0, 0.603);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video {
+    margin-top:50px;
+    height: 100%;
+}
+
+.video_controls {
+    height: 20%;
+    width: 100%;
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    padding: 5px;
+}
+
+/*---------- Estilos de la parte inferior (LISTA DE CAPITULOS) ------------------*/
+.ep_list {
+    grid-area: ep_list;
+    height: 50vh;
+    background-color: rgba(128, 128, 128, 0.692);
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid black;
+
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+
+}
+
+.ep_title {
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.eps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(51, 51, 51, 0.514);
+
+    padding: 1%;
+    overflow-y: auto;
+}
+
+.ep_name {
+    background-color: transparent;
+}
+.ep_link {
+
+    border-bottom: 1px solid black;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.ep_link:hover {
+    background-color: #1b5a5f;
 }

@@ -7,13 +7,18 @@
   </head>
   <body>
     <div class="rep_ale">
-      <button>Reproducion Aleatoria</button>
-    </div>
-    <div class="ep_list">
-      <div class="ep">
-        <p class="ep_name">Nombre del episodio</p>
-        <button class="ep_link">Ver</button>
+      <video class="video" id="video"  autoplay controls > </video>
+      <div class="video_controls">
+        <button>Anterior Cap</button>
+        <button>Aleatorio</button>
+        <button>Siguiente Cap</button>
       </div>
     </div>
+    <div class="ep_list">
+      <p class="ep_title">Episodios: </p>
+      <div class="eps" id="eps">
+      </div>
+    </div>
+    <script defer src="index.js"></script>
   </body>
 </html>
