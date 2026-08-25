@@ -39,9 +39,9 @@ function mostrarVideoInicial() {
     let videosAleatorios = shuffleArray([...videosGlobal]);
     indiceActual = videosGlobal.findIndex(v => v.url === videosAleatorios[0].url);
     video_element.src = videosGlobal[indiceActual].url;
-    setTimeout(() => {
-		video_element.play();
-	},500);
+    video_element.addEventListener("canplay", () => {
+        video_element.play().catch(() => {});
+    }, { once: true });
 }
 
 function shuffleArray(array) { // Algoritmo Fisher-Yates
